@@ -1,0 +1,315 @@
+#!/bin/bash 
+# Updating Enlightenment Desktop 
+# Tony (August 2014)
+# emperor.cu@gmail.com
+
+clear
+#export HTTP_PROXY="http://127.0.0.1:3128"
+cd ~/extra-packages/enlightenment/
+
+#####   Updating Core repositories   #####
+echo "Updating Core repositories..." && echo 
+sleep 2
+
+for coredirs in \
+    efl \
+    evas_generic_loaders \
+    emotion_generic_players \
+    elementary \
+    enlightenment;
+do 
+    echo "Updating ${coredirs}";
+    cd core/${coredirs};
+        git pull --rebase;
+        cd ../../;
+    echo;
+    sleep 3;
+    clear;
+done 
+
+######   Compiling Enlightenment Core   ######
+echo && echo "Compiling Core?: [Y/N]" && read Q
+
+if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
+    for coredirs in efl evas_generic_loaders emotion_generic_players elementary enlightenment;
+    do 
+        echo "Compiling ${coredirs}";
+        sleep 3;
+        cd core/${coredirs};
+            make clean; 
+            ./autogen.sh;
+            if ${coredirs} == "efl"; then
+                ./configure \
+                    --prefix=/usr/local \
+                    --enable-xinput22 \
+                    --enable-multisense \
+                    --enable-systemd \
+                    --enable-image-loader-webp \
+                    --enable-harfbuzz \
+                    --enable-fb \
+                    --disable-tslib \
+                    --disable-gstreamer1 \
+                    --enable-wayland \
+                    --enable-xine \
+                    --enable-drm \
+                    --enable-i-really-know-what-i-am-doing-and-that-this-will-probably-break-things-and-i-will-fix-them-myself-and-send-patches-aba;
+            else
+                ./configure --prefix=/usr/local;
+            fi
+            make; 
+            sudo make install; 
+            sudo ldconfig; 
+            cd ../../ 
+    done 
+    echo "Exiting of core..." && echo && sleep 3
+fi
+
+#####   Bindings repositories   #####
+clear;
+echo "Updating Bindings repositories..." && echo 
+sleep 2
+
+for bindingsdir in \
+    python-efl \
+    python-e_dbus \
+    python-ecore \
+    python-edje \
+    python-elementary \
+    python-emotion \
+    python-ethumb \
+    python-evas
+do 
+    echo "Updating ${bindingsdir}";
+    cd bindings/${bindingsdir};
+        git pull --rebase; 
+        cd ../../
+    sleep 3;
+    clear;
+done
+echo "Exiting of Bindings..." && echo && sleep 2
+
+#####   Compiling Bindings   #####
+echo "Compiling Bindings?: [Y/N]" && read Q
+
+export PYTHONPATH=/usr/include/python2.7/:/usr/lib/python2.7/dist-packages/
+if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
+    # python-e_dbus , TODO: NOT INCLUDE FOR NOW
+    for bindingsdir in \
+        python-efl \
+        python-evas \
+        python-ecore \
+        python-edje \
+        python-elementary \
+        python-emotion \
+        python-ethumb;
+    do 
+        echo Compiling ${bindingsdir};
+        sleep 1;
+        cd bindings/${bindingsdir};
+            if ${bindingsdir} -eq "python-efl"; then
+                sudo python setup.py install;
+            else
+                make clean; 
+                ./autogen.sh; 
+                ./configure --prefix=/usr/local; 
+                make; 
+                sudo make install; 
+                sudo ldconfig; 
+                cd ../../ 
+            fi
+    echo "Exiting of bindings..." && echo && sleep 3
+    done
+fi
+
+#####   Updating Other stuff   #####
+clear;
+echo "Updating Modules repositories..." && echo
+sleep 2
+
+for modulesdir in \
+    alarm \
+    comp-scale \
+    cpu diskio \
+    eenvader.fractal \
+    elev8 \
+    elfe \
+    empris \
+    engage \
+    everything-places \
+    everything-websearch \
+    eweather \
+    forecasts \
+    mail \
+    moon \
+    mpdule \
+    net \
+    news \
+    penguins \
+    photo \
+    places tclock;
+do
+    echo "Updating ${modulesdir}";
+    cd modules/${modulesdir}
+        git pull --rebase; 
+        cd ../../
+    sleep 3;
+    clear;
+done 
+echo "Exiting of Modules..." && echo && sleep 2
+
+#####   Compiling Enlightenment Modules   #####
+echo "Compiling Modules?: [Y/N]" && read Q
+
+if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
+    echo "Compiling Modules";
+    sleep 1;
+    for modulesdir in \
+        alarm \
+        comp-scale \
+        cpu \
+        diskio \
+        eenvader.fractal \
+        elev8 \
+        elfe \
+        empris \
+        engage \
+        everything-places \
+        everything-websearch \
+        forecasts \
+        mail \
+        moon \
+        mpdule \
+        net \
+        news \
+        penguins \
+        photo \
+        places \
+        tclock;
+    do 
+        cd modules/${modulesdir}; 
+            make clean; 
+            ./autogen.sh; 
+            ./configure --prefix=/usr/local; 
+            make; 
+            sudo make install; 
+            sudo ldconfig; 
+            cd ../../
+    done 
+else
+    echo "Exiting of Modules" && echo && sleep 3
+fi
+
+
+#####   Updating extra misc   #####
+clear;
+echo "Updating the rest of extra misc..."
+sleep 2
+
+for gamesdir in \
+    e_cho \
+    econcentration \
+    efbb \
+    elemines \
+    eskiss \
+    etrophy;
+do 
+    cd games/${gamesdir};
+        git pull --rebase;
+        cd ../../;
+done
+
+for themesdir in \
+    23oz \
+    b_and_w \
+    blingbling \
+    darkness \
+    detour-elm \
+    detourious \
+    efenniht \
+    ewl_b_and_w \
+    klok;
+do
+    cd themes/${themesdir};
+        git pull --rebase;
+        cd ../../;
+done
+
+for toolsdir in \
+    clouseau \
+    edje_list \
+    edje_smart_thumb \
+    enventor \
+    exactness-edje-data \
+    exactness-elm-data \
+    exactness \
+    formatting \
+    geneet;
+do
+    cd tools/${toolsdir};
+        git pull --rebase;
+        cd ../../;
+done
+
+for discomfitordirs in \
+    efx \
+    erssd \
+    s2 \
+    emote;
+do
+    cd discomfitor/${discomfitordirs};
+        git pull --rebase;
+        cd ../../;
+done
+
+# APPS WORKING STABLES ON ENLIGHTENMENT
+# eterm: for me was change for terminology (MORE COOLER TERMINAL) ;-)
+for apps_stable in \
+    ecrire \
+    emprint \
+    enjoy \
+    ephoto \
+    epour \
+    equate \
+    espionage \
+    terminology;
+do
+    cd applications/${apps_stable};
+        git pull --rebase;
+        cd ../../;
+done
+
+# OTHERS APPS FROM DEVELOPERS OF ENLIGHTENMENT 
+cd kiwi/egraph; git pull; cd ../../
+cd kiwi/elife; git pull; cd ../../
+cd kuuko/apathy; git pull; cd ../../
+cd kuuko/valosoitin; git pull; cd ../../
+cd yakov/egui; git pull; cd ../../
+cd yakov/eo_bindings; git pull; cd ../../
+cd applications/econnman; git pull; cd ../../
+#cd applications/ && svn checkout http://e17mods.googlecode.com/svn/trunk/ e17mods
+
+# Compiling Enlightenment Applications
+echo "Compiling Applications?: [Y/N]" && read Q
+
+if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
+    for appsdir in econnman epour ephoto enventor ecrire equate espionage rage;
+    do 
+        echo "Compiling ${appsdir}";
+        sleep 1;
+        cd applications/${appsdir}; 
+            sudo make clean; 
+            sudo ./autogen.sh; 
+            sudo ./configure --prefix=/usr/local; 
+            sudo make; 
+            sudo make install; 
+            sudo ldconfig; 
+            cd ../../
+    done
+    echo "Exiting of Applications" && echo && sleep 3
+fi
+
+echo;
+echo "Done!";
+sleep 1;
+clear;
+exit 0
