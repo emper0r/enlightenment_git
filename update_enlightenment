@@ -270,9 +270,10 @@ done
 # eterm: for me was change for terminology (MORE COOLER TERMINAL) ;-)
 for apps_stable in \
     econnman \
+    lightmediascanner \
+    enjoy \
     ecrire \
     emprint \
-    enjoy \
     ephoto \
     epour \
     equate \
