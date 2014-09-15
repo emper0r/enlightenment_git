@@ -30,8 +30,13 @@ done
 ######   Compiling Enlightenment Core   ######
 echo && echo "Compiling Core?: [Y/N]" && read Q
 
-if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
-    for coredirs in efl evas_generic_loaders emotion_generic_players elementary enlightenment;
+if [ ${Q} -eq "Y" ] || [ ${Q} -eq "y" ]; then
+    for coredirs in \
+        efl \
+        evas_generic_loaders \
+        emotion_generic_players \
+        elementary \
+        enlightenment;
     do 
         echo "Compiling ${coredirs}";
         sleep 3;
@@ -77,7 +82,7 @@ for bindingsdir in \
     python-elementary \
     python-emotion \
     python-ethumb \
-    python-evas
+    python-evas;
 do 
     echo "Updating ${bindingsdir}";
     cd bindings/${bindingsdir};
@@ -264,6 +269,7 @@ done
 # APPS WORKING STABLES ON ENLIGHTENMENT
 # eterm: for me was change for terminology (MORE COOLER TERMINAL) ;-)
 for apps_stable in \
+    econnman \
     ecrire \
     emprint \
     enjoy \
@@ -278,35 +284,47 @@ do
         cd ../../;
 done
 
-# OTHERS APPS FROM DEVELOPERS OF ENLIGHTENMENT 
-cd kiwi/egraph; git pull; cd ../../
-cd kiwi/elife; git pull; cd ../../
-cd kuuko/apathy; git pull; cd ../../
-cd kuuko/valosoitin; git pull; cd ../../
-cd yakov/egui; git pull; cd ../../
-cd yakov/eo_bindings; git pull; cd ../../
-cd applications/econnman; git pull; cd ../../
-#cd applications/ && svn checkout http://e17mods.googlecode.com/svn/trunk/ e17mods
-
 # Compiling Enlightenment Applications
 echo "Compiling Applications?: [Y/N]" && read Q
 
 if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
-    for appsdir in econnman epour ephoto enventor ecrire equate espionage rage;
+    for appsdir in \
+        econnman \
+        epour \
+        ephoto \
+        enventor \
+        ecrire \
+        equate \
+        espionage \
+        rage;
     do 
         echo "Compiling ${appsdir}";
         sleep 1;
         cd applications/${appsdir}; 
-            sudo make clean; 
-            sudo ./autogen.sh; 
-            sudo ./configure --prefix=/usr/local; 
-            sudo make; 
-            sudo make install; 
-            sudo ldconfig; 
-            cd ../../
+            make clean;
+            ./autogen.sh;
+            ./configure --prefix=/usr/local;
+            make;
+            sudo make install;
+            sudo ldconfig;
+            cd ../../;
     done
     echo "Exiting of Applications" && echo && sleep 3
 fi
+
+# OTHERS APPS FROM DEVELOPERS OF ENLIGHTENMENT
+for developers in \
+    kiwi/egraph \
+    kiwi/elife \
+    kuuko/apathy \
+    kuuko/valosoitin \
+    yakov/egui \
+    yakov/eo_bindings;
+do
+    cd ${developers};
+        git pull --rebase;
+        cd ../../;
+done
 
 echo;
 echo "Done!";
