@@ -119,6 +119,7 @@ git clone http://git.enlightenment.org/apps/espionage.git/ applications/espionag
 git clone http://git.enlightenment.org/apps/eterm.git/ applications/eterm
 git clone http://git.enlightenment.org/apps/terminology.git/ applications/terminology
 git clone http://git.enlightenment.org/misc/entrance.git/ applications/entrance 
+git clone https://git.enlightenment.org/apps/rage.git/ applications/rage
 svn checkout http://e17mods.googlecode.com/svn/trunk/ applications/e17mods
 
 # Bindings & Legacy
