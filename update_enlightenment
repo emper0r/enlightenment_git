@@ -301,12 +301,15 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
         echo "Compiling ${appsdir}";
         sleep 1;
         cd applications/${appsdir}; 
-            make clean;
-            ./autogen.sh;
-            ./configure --prefix=/usr/local;
-            make;
-            sudo make install;
-            sudo ldconfig;
+            if ${appsdir} -eq "epour"; then
+                sudo python setup.py install;
+            else
+                make clean;
+                ./autogen.sh;
+                ./configure --prefix=/usr/local;
+                make;
+                sudo make install;
+                sudo ldconfig;
             cd ../../;
     done
     echo "Exiting of Applications" && echo && sleep 3

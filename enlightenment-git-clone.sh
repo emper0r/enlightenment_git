@@ -69,7 +69,9 @@ sudo aptitude install \
     libgbm-dev \
     cython \
     libsqlite3-dev \
-    connman 
+    connman \
+    python-distutils-extra \
+    python-libtorrent
 
 # Core
 git clone http://git.enlightenment.org/core/efl.git/ core/efl
