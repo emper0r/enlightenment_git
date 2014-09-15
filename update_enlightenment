@@ -20,7 +20,7 @@ for coredirs in \
 do 
     echo "Updating ${coredirs}";
     cd core/${coredirs};
-        git pull --rebase;
+        git pull;
         cd ../../;
     echo;
     sleep 3;
@@ -86,7 +86,7 @@ for bindingsdir in \
 do 
     echo "Updating ${bindingsdir}";
     cd bindings/${bindingsdir};
-        git pull --rebase; 
+        git pull; 
         cd ../../
     sleep 3;
     clear;
@@ -155,7 +155,7 @@ for modulesdir in \
 do
     echo "Updating ${modulesdir}";
     cd modules/${modulesdir}
-        git pull --rebase; 
+        git pull; 
         cd ../../
     sleep 3;
     clear;
@@ -219,7 +219,7 @@ for gamesdir in \
     etrophy;
 do 
     cd games/${gamesdir};
-        git pull --rebase;
+        git pull;
         cd ../../;
 done
 
@@ -235,7 +235,7 @@ for themesdir in \
     klok;
 do
     cd themes/${themesdir};
-        git pull --rebase;
+        git pull;
         cd ../../;
 done
 
@@ -251,7 +251,7 @@ for toolsdir in \
     geneet;
 do
     cd tools/${toolsdir};
-        git pull --rebase;
+        git pull;
         cd ../../;
 done
 
@@ -262,7 +262,7 @@ for discomfitordirs in \
     emote;
 do
     cd discomfitor/${discomfitordirs};
-        git pull --rebase;
+        git pull;
         cd ../../;
 done
 
@@ -280,7 +280,7 @@ for apps_stable in \
     terminology;
 do
     cd applications/${apps_stable};
-        git pull --rebase;
+        git pull;
         cd ../../;
 done
 
@@ -322,7 +322,7 @@ for developers in \
     yakov/eo_bindings;
 do
     cd ${developers};
-        git pull --rebase;
+        git pull;
         cd ../../;
 done
 
