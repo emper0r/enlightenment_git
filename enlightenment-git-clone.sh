@@ -7,7 +7,69 @@
 mkdir -p $HOME/src
 cd $HOME/src/
 
-sudo aptitude install libc6-dev zlib1g-dev libfreetype6-dev fontconfig libfribidi-dev libharfbuzz-dev libpng++-dev libjpeg-dev libtiff5-dev libgif-dev librsvg2-dev libx11-dev libxext-dev libxrender-dev libxcomposite-dev libxdamage-dev libxfixes-dev libxrandr-dev libxinerama-dev libxss-dev libxp-dev libxtst-dev libdpm-dev libxcursor-dev libprintsys-dev libxkbcommon-dev libxcb1-dev libxcb1 libxcb-keysyms1-dev libxcb-shape0-dev libudev-dev libdbus2.0-cil-dev libdbus-1-dev libasound2-dev libpoppler-dev libraw-dev libspectre-dev libxine-dev libvlc-dev luajit libwebp-dev libbullet-dev libmount-dev libssl-dev libcurlpp-dev libpulse-dev gcc g++ automake libtool check doxygen libluajit-5.1-dev libsndfile1-dev libgstreamer1.0-dev libblkid-dev libsystemd-journal-dev libwayland-dev libgbm-dev cython libsqlite3-dev
+sudo aptitude install \
+    libc6-dev \
+    zlib1g-dev \
+    libfreetype6-dev \
+    fontconfig \
+    libfribidi-dev \
+    libharfbuzz-dev \
+    libpng++-dev \
+    libjpeg-dev \
+    libtiff5-dev \
+    libgif-dev \
+    librsvg2-dev \
+    libx11-dev \
+    libxext-dev \
+    libxrender-dev \
+    libxcomposite-dev \
+    libxdamage-dev \
+    libxfixes-dev \
+    libxrandr-dev \
+    libxinerama-dev \
+    libxss-dev \
+    libxp-dev \
+    libxtst-dev \
+    libdpm-dev \
+    libxcursor-dev \
+    libprintsys-dev \
+    libxkbcommon-dev \
+    libxcb1-dev \
+    libxcb1 \
+    libxcb-keysyms1-dev \
+    libxcb-shape0-dev \
+    libudev-dev \
+    libdbus2.0-cil-dev \
+    libdbus-1-dev \
+    libasound2-dev \
+    libpoppler-dev \
+    libraw-dev \
+    libspectre-dev \
+    libxine-dev \
+    libvlc-dev \
+    luajit \
+    libwebp-dev \
+    libbullet-dev \
+    libmount-dev \
+    libssl-dev \
+    libcurlpp-dev \
+    libpulse-dev \
+    gcc \
+    g++ \
+    automake \
+    libtool \
+    check \
+    doxygen \
+    libluajit-5.1-dev \
+    libsndfile1-dev \
+    libgstreamer1.0-dev \
+    libblkid-dev \
+    libsystemd-journal-dev \
+    libwayland-dev \
+    libgbm-dev \
+    cython \
+    libsqlite3-dev \
+    connman 
 
 # Core
 git clone http://git.enlightenment.org/core/efl.git/ core/efl
@@ -42,6 +104,7 @@ git clone http://git.enlightenment.org/enlightenment/modules/places.git modules/
 git clone http://git.enlightenment.org/enlightenment/modules/tclock.git modules/tclock
 
 # Applications
+git clone https://git.kernel.org/pub/scm/network/connman/connman.git applications/connman
 git clone http://git.enlightenment.org/apps/econnman.git/ applications/econnman
 git clone http://git.enlightenment.org/apps/ecrire.git/ applications/ecrire
 git clone http://git.enlightenment.org/apps/emprint.git/ applications/emprint

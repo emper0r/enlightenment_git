@@ -269,7 +269,6 @@ done
 # APPS WORKING STABLES ON ENLIGHTENMENT
 # eterm: for me was change for terminology (MORE COOLER TERMINAL) ;-)
 for apps_stable in \
-    econnman \
     lightmediascanner \
     enjoy \
     ecrire \
