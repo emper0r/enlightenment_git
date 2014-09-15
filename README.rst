@@ -26,10 +26,9 @@ BUILD
 
 Run the second script and keep update when you want executing again and again over the time.
 
-$ sh updates
+$ sh update_enlightenment
 
-* NOTE: After build everythings just need do relogin again.
-        In the right bottom corner can see the git version when you do updates.
+* NOTE: After build everythings just need do relogin again. In the right bottom corner can see the git version when you do updates.
 
 
 ISSUE TRACKER
