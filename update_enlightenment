@@ -291,6 +291,8 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
     for appsdir in \
         econnman \
         epour \
+        epymc \
+        egitu \
         ephoto \
         enventor \
         ecrire \
@@ -301,7 +303,7 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
         echo "Compiling ${appsdir}";
         sleep 1;
         cd applications/${appsdir}; 
-            if ${appsdir} -eq "epour"; then
+            if [ ${appsdir} -eq "epour" || ${appsdir} -eq "egitu" || ${appsdir} -eq "epymc"] ; then
                 sudo python setup.py install;
             else
                 make clean;
@@ -311,6 +313,7 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
                 sudo make install;
                 sudo ldconfig;
             cd ../../;
+        fi;
     done
     echo "Exiting of Applications" && echo && sleep 3
 fi
@@ -329,6 +332,32 @@ do
         cd ../../;
 done
 
+# Compiling Enlightenment developers Applications
+echo "Compiling Applications from developers?: [Y/N]" && read Q
+
+if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
+    for devels_apps in \
+        kiwi/egraph \
+        kiwi/elife \
+        kuuko/apathy \
+        kuuko/valosoitin \
+        yakov/egui \
+        yakov/eo_bindings \
+        ;
+    do
+        echo "Compiling ${appsdir}";
+        sleep 1;
+        cd ${devels_apps};
+            make clean;
+            ./autogen.sh;
+            ./configure --prefix=/usr/local;
+            make;
+            sudo make install;
+            sudo ldconfig;
+            cd ../../;
+    done
+    echo "Exiting from developers Applications" && echo && sleep 3
+fi
 echo;
 echo "Done!";
 sleep 1;

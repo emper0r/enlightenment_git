@@ -112,6 +112,8 @@ git clone http://git.enlightenment.org/apps/ecrire.git/ applications/ecrire
 git clone http://git.enlightenment.org/apps/emprint.git/ applications/emprint
 git clone http://git.enlightenment.org/apps/enjoy.git/ applications/enjoy
 git clone https://github.com/profusion/lightmediascanner.git applications/lightmediascanner 
+git clone https://github.com/DaveMDS/epymc applications/epymc 
+git clone https://github.com/DaveMDS/egitu.git applications/egitu
 git clone http://git.enlightenment.org/apps/ephoto.git/ applications/ephoto
 git clone http://git.enlightenment.org/apps/epour.git/ applications/epour
 git clone http://git.enlightenment.org/apps/equate.git/ applications/equate
