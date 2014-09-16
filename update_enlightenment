@@ -3,13 +3,13 @@
 # Tony (August 2014)
 # emperor.cu@gmail.com
 
-clear
+clear;
 #export HTTP_PROXY="http://127.0.0.1:3128"
-cd ~/extra-packages/enlightenment/
+cd ~/extra-packages/enlightenment/;
 
 #####   Updating Core repositories   #####
-echo "Updating Core repositories..." && echo 
-sleep 2
+echo "Updating Core repositories..." && echo;
+sleep 2;
 
 for coredirs in \
     efl \
@@ -25,10 +25,10 @@ do
     echo;
     sleep 3;
     clear;
-done 
+done; 
 
 ######   Compiling Enlightenment Core   ######
-echo && echo "Compiling Core?: [Y/N]" && read Q
+echo && echo "Compiling Core?: [Y/N]" && read Q;
 
 if [ ${Q} -eq "Y" ] || [ ${Q} -eq "y" ]; then
     for coredirs in \
@@ -60,19 +60,19 @@ if [ ${Q} -eq "Y" ] || [ ${Q} -eq "y" ]; then
                     --enable-i-really-know-what-i-am-doing-and-that-this-will-probably-break-things-and-i-will-fix-them-myself-and-send-patches-aba;
             else
                 ./configure --prefix=/usr/local;
-            fi
+            fi;
             make; 
             sudo make install; 
             sudo ldconfig; 
-            cd ../../ 
-    done 
-    echo "Exiting of core..." && echo && sleep 3
-fi
+            cd ../../;
+    done;
+    echo "Exiting of core..." && echo && sleep 3;
+fi;
 
 #####   Bindings repositories   #####
 clear;
-echo "Updating Bindings repositories..." && echo 
-sleep 2
+echo "Updating Bindings repositories..." && echo;
+sleep 2;
 
 for bindingsdir in \
     python-efl \
@@ -87,16 +87,16 @@ do
     echo "Updating ${bindingsdir}";
     cd bindings/${bindingsdir};
         git pull; 
-        cd ../../
+        cd ../../;
     sleep 3;
     clear;
-done
-echo "Exiting of Bindings..." && echo && sleep 2
+done;
+echo "Exiting of Bindings..." && echo && sleep 2;
 
 #####   Compiling Bindings   #####
-echo "Compiling Bindings?: [Y/N]" && read Q
+echo "Compiling Bindings?: [Y/N]" && read Q;
 
-export PYTHONPATH=/usr/include/python2.7/:/usr/lib/python2.7/dist-packages/
+export PYTHONPATH=/usr/include/python2.7/:/usr/lib/python2.7/dist-packages/;
 if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
     # python-e_dbus , TODO: NOT INCLUDE FOR NOW
     for bindingsdir in \
@@ -121,15 +121,15 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
                 sudo make install; 
                 sudo ldconfig; 
                 cd ../../ 
-            fi
-    echo "Exiting of bindings..." && echo && sleep 3
-    done
-fi
+            fi;
+    echo "Exiting of bindings..." && echo && sleep 3;
+    done;
+fi;
 
 #####   Updating Other stuff   #####
 clear;
-echo "Updating Modules repositories..." && echo
-sleep 2
+echo "Updating Modules repositories..." && echo;
+sleep 2;
 
 for modulesdir in \
     alarm \
@@ -156,14 +156,14 @@ do
     echo "Updating ${modulesdir}";
     cd modules/${modulesdir}
         git pull; 
-        cd ../../
+        cd ../../;
     sleep 3;
     clear;
-done 
-echo "Exiting of Modules..." && echo && sleep 2
+done; 
+echo "Exiting of Modules..." && echo && sleep 2;
 
 #####   Compiling Enlightenment Modules   #####
-echo "Compiling Modules?: [Y/N]" && read Q
+echo "Compiling Modules?: [Y/N]" && read Q;
 
 if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
     echo "Compiling Modules";
@@ -198,17 +198,17 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
             make; 
             sudo make install; 
             sudo ldconfig; 
-            cd ../../
-    done 
+            cd ../../;
+    done; 
 else
-    echo "Exiting of Modules" && echo && sleep 3
+    echo "Exiting of Modules" && echo && sleep 3;
 fi
 
 
 #####   Updating extra misc   #####
 clear;
 echo "Updating the rest of extra misc..."
-sleep 2
+sleep 2;
 
 for gamesdir in \
     e_cho \
@@ -221,7 +221,7 @@ do
     cd games/${gamesdir};
         git pull;
         cd ../../;
-done
+done;
 
 for themesdir in \
     23oz \
@@ -237,7 +237,7 @@ do
     cd themes/${themesdir};
         git pull;
         cd ../../;
-done
+done;
 
 for toolsdir in \
     clouseau \
@@ -253,7 +253,7 @@ do
     cd tools/${toolsdir};
         git pull;
         cd ../../;
-done
+done;
 
 for discomfitordirs in \
     efx \
@@ -264,7 +264,7 @@ do
     cd discomfitor/${discomfitordirs};
         git pull;
         cd ../../;
-done
+done;
 
 # APPS WORKING STABLES ON ENLIGHTENMENT
 # eterm: for me was change for terminology (MORE COOLER TERMINAL) ;-)
@@ -282,7 +282,7 @@ do
     cd applications/${apps_stable};
         git pull;
         cd ../../;
-done
+done;
 
 # Compiling Enlightenment Applications
 echo "Compiling Applications?: [Y/N]" && read Q
@@ -314,9 +314,9 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
                 sudo ldconfig;
             cd ../../;
         fi;
-    done
-    echo "Exiting of Applications" && echo && sleep 3
-fi
+    done;
+    echo "Exiting of Applications" && echo && sleep 3;
+fi;
 
 # OTHERS APPS FROM DEVELOPERS OF ENLIGHTENMENT
 for developers in \
@@ -330,10 +330,10 @@ do
     cd ${developers};
         git pull;
         cd ../../;
-done
+done;
 
 # Compiling Enlightenment developers Applications
-echo "Compiling Applications from developers?: [Y/N]" && read Q
+echo "Compiling Applications from developers?: [Y/N]" && read Q;
 
 if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
     for devels_apps in \
@@ -342,8 +342,7 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
         kuuko/apathy \
         kuuko/valosoitin \
         yakov/egui \
-        yakov/eo_bindings \
-        ;
+        yakov/eo_bindings;
     do
         echo "Compiling ${appsdir}";
         sleep 1;
@@ -355,11 +354,11 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
             sudo make install;
             sudo ldconfig;
             cd ../../;
-    done
-    echo "Exiting from developers Applications" && echo && sleep 3
-fi
+    done;
+    echo "Exiting from developers Applications" && echo && sleep 3;
+fi;
 echo;
 echo "Done!";
 sleep 1;
 clear;
-exit 0
+exit 0;
