@@ -30,7 +30,7 @@ done;
 ######   Compiling Enlightenment Core   ######
 echo && echo "Compiling Core?: [Y/N]" && read Q;
 
-if [ ${Q} -eq "Y" ] || [ ${Q} -eq "y" ]; then
+if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
     for coredirs in \
         efl \
         evas_generic_loaders \
@@ -111,7 +111,7 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
         echo Compiling ${bindingsdir};
         sleep 1;
         cd bindings/${bindingsdir};
-            if ${bindingsdir} -eq "python-efl"; then
+            if ${bindingsdir} == "python-efl"; then
                 sudo python setup.py install;
             else
                 make clean; 
@@ -303,7 +303,7 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
         echo "Compiling ${appsdir}";
         sleep 1;
         cd applications/${appsdir}; 
-            if [ ${appsdir} -eq "epour" || ${appsdir} -eq "egitu" || ${appsdir} -eq "epymc"] ; then
+            if [ ${appsdir} == "epour" || ${appsdir} == "egitu" || ${appsdir} == "epymc"] ; then
                 sudo python setup.py install;
             else
                 make clean;
