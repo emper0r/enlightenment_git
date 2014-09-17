@@ -43,7 +43,7 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
         cd core/${coredirs};
             make clean; 
             ./autogen.sh;
-            if ${coredirs} == "efl"; then
+            if [ ${coredirs} == "efl" ]; then
                 ./configure \
                     --prefix=/usr/local \
                     --enable-xinput22 \
@@ -111,19 +111,19 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
         echo Compiling ${bindingsdir};
         sleep 1;
         cd bindings/${bindingsdir};
-            if ${bindingsdir} == "python-efl"; then
+            if [ ${bindingsdir} == "python-efl" ]; then
                 sudo python setup.py install;
             else
-                make clean; 
-                ./autogen.sh; 
-                ./configure --prefix=/usr/local; 
-                make; 
-                sudo make install; 
-                sudo ldconfig; 
-                cd ../../ 
+                sudo make clean;
+                ./autogen.sh;
+                ./configure --prefix=/usr/local;
+                make;
+                sudo make install;
+                sudo ldconfig;
+                cd ../../;
             fi;
-    echo "Exiting of bindings..." && echo && sleep 3;
     done;
+    echo "Exiting of bindings..." && echo && sleep 3;
 fi;
 
 #####   Updating Other stuff   #####
@@ -151,7 +151,8 @@ for modulesdir in \
     news \
     penguins \
     photo \
-    places tclock;
+    places \
+    tclock;
 do
     echo "Updating ${modulesdir}";
     cd modules/${modulesdir}
@@ -168,31 +169,32 @@ echo "Compiling Modules?: [Y/N]" && read Q;
 if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
     echo "Compiling Modules";
     sleep 1;
+    # TODO: Problems in followings modules
+    #comp-scale \
+    #elev8 \
+    #elfe \
+    #empris \
+    #engage \
+    #mail \
+    #moon \
+    ##everything-websearch \
+    ##mpdule \
+    #news \
+    #photo \
     for modulesdir in \
         alarm \
-        comp-scale \
         cpu \
         diskio \
         eenvader.fractal \
-        elev8 \
-        elfe \
-        empris \
-        engage \
         everything-places \
-        everything-websearch \
         forecasts \
-        mail \
-        moon \
-        mpdule \
         net \
-        news \
         penguins \
-        photo \
         places \
         tclock;
     do 
         cd modules/${modulesdir}; 
-            make clean; 
+            sudo make clean; 
             ./autogen.sh; 
             ./configure --prefix=/usr/local; 
             make; 
@@ -218,9 +220,12 @@ for gamesdir in \
     eskiss \
     etrophy;
 do 
+    echo "Updating ${gamesdir}";
     cd games/${gamesdir};
         git pull;
         cd ../../;
+    sleep 1;
+    clear;
 done;
 
 for themesdir in \
@@ -234,9 +239,12 @@ for themesdir in \
     ewl_b_and_w \
     klok;
 do
+    echo "Updating ${themesdir}";
     cd themes/${themesdir};
         git pull;
         cd ../../;
+    sleep 1;
+    clear;
 done;
 
 for toolsdir in \
@@ -250,9 +258,12 @@ for toolsdir in \
     formatting \
     geneet;
 do
+    echo "Updating ${toolsdir}";
     cd tools/${toolsdir};
         git pull;
         cd ../../;
+    sleep 1;
+    clear;
 done;
 
 for discomfitordirs in \
@@ -261,9 +272,12 @@ for discomfitordirs in \
     s2 \
     emote;
 do
+    echo "Updating ${discomfitordirs}";
     cd discomfitor/${discomfitordirs};
         git pull;
         cd ../../;
+    sleep 1;
+    clear;
 done;
 
 # APPS WORKING STABLES ON ENLIGHTENMENT
@@ -279,9 +293,12 @@ for apps_stable in \
     espionage \
     terminology;
 do
+    echo "Updating ${apps_stable}";
     cd applications/${apps_stable};
         git pull;
         cd ../../;
+    slee 1;
+    clear;
 done;
 
 # Compiling Enlightenment Applications
@@ -292,6 +309,17 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
         econnman \
         epour \
         epymc \
+    do
+        echo "Compiling ${appsdir}";
+        sleep 1;
+        cd applications/${appsdir}
+            sudo python setup.py install;
+            sleep 3;
+            cd ../../;
+        clear;
+    done;
+
+    for appsdir in \
         egitu \
         ephoto \
         enventor \
@@ -303,17 +331,14 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
         echo "Compiling ${appsdir}";
         sleep 1;
         cd applications/${appsdir}; 
-            if [ ${appsdir} == "epour" || ${appsdir} == "egitu" || ${appsdir} == "epymc"] ; then
-                sudo python setup.py install;
-            else
-                make clean;
-                ./autogen.sh;
-                ./configure --prefix=/usr/local;
-                make;
-                sudo make install;
-                sudo ldconfig;
+            sudo make clean;
+            ./autogen.sh;
+            ./configure --prefix=/usr/local;
+            make;
+            sudo make install;
+            sudo ldconfig;
             cd ../../;
-        fi;
+        clear;
     done;
     echo "Exiting of Applications" && echo && sleep 3;
 fi;
@@ -327,9 +352,12 @@ for developers in \
     yakov/egui \
     yakov/eo_bindings;
 do
+    echo "Updating ${developers}";
     cd ${developers};
         git pull;
         cd ../../;
+    sleep 1;
+    clear;
 done;
 
 # Compiling Enlightenment developers Applications
