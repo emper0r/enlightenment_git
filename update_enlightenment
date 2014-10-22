@@ -16,7 +16,7 @@ for coredirs in \
     evas_generic_loaders \
     emotion_generic_players \
     elementary \
-    enlightenment;
+    enligthenment;
 do 
     echo "Updating ${coredirs}";
     cd core/${coredirs};
@@ -41,8 +41,8 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
         echo "Compiling ${coredirs}";
         sleep 3;
         cd core/${coredirs};
-            make clean; 
-            ./autogen.sh;
+            sudo make clean;
+            sudo ./autogen.sh;
             if [ ${coredirs} == "efl" ]; then
                 ./configure \
                     --prefix=/usr/local \
@@ -61,7 +61,7 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
             else
                 ./configure --prefix=/usr/local;
             fi;
-            make; 
+            sudo make; 
             sudo make install; 
             sudo ldconfig; 
             cd ../../;
@@ -73,6 +73,7 @@ fi;
 clear;
 echo "Updating Bindings repositories..." && echo;
 sleep 2;
+cd ~/extra-packages/enlightenment/;
 
 for bindingsdir in \
     python-efl \
@@ -130,6 +131,7 @@ fi;
 clear;
 echo "Updating Modules repositories..." && echo;
 sleep 2;
+cd ~/extra-packages/enlightenment/;
 
 for modulesdir in \
     alarm \
@@ -194,7 +196,7 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
         tclock;
     do 
         cd modules/${modulesdir}; 
-            sudo make clean; 
+            sudo make clean;
             ./autogen.sh; 
             ./configure --prefix=/usr/local; 
             make; 
@@ -211,6 +213,7 @@ fi
 clear;
 echo "Updating the rest of extra misc..."
 sleep 2;
+cd ~/extra-packages/enlightenment/;
 
 for gamesdir in \
     e_cho \
@@ -282,6 +285,9 @@ done;
 
 # APPS WORKING STABLES ON ENLIGHTENMENT
 # eterm: for me was change for terminology (MORE COOLER TERMINAL) ;-)
+
+cd ~/extra-packages/enlightenment/;
+
 for apps_stable in \
     lightmediascanner \
     enjoy \
@@ -304,11 +310,17 @@ done;
 # Compiling Enlightenment Applications
 echo "Compiling Applications?: [Y/N]" && read Q
 
+cd ~/extra-packages/enlightenment/;
 if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
+    cd applications/econnman
+    sudo make clean;
+    sudo ./configure;
+    sudo make;
+    sudo make install;
+    cd ../../;
     for appsdir in \
-        econnman \
         epour \
-        epymc \
+        epymc;
     do
         echo "Compiling ${appsdir}";
         sleep 1;
@@ -343,6 +355,8 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
     echo "Exiting of Applications" && echo && sleep 3;
 fi;
 
+cd ~/extra-packages/enlightenment/;
+
 # OTHERS APPS FROM DEVELOPERS OF ENLIGHTENMENT
 for developers in \
     kiwi/egraph \
@@ -375,7 +389,7 @@ if [ ${Q} == "Y" ] || [ ${Q} == "y" ]; then
         echo "Compiling ${appsdir}";
         sleep 1;
         cd ${devels_apps};
-            make clean;
+            sudo install clean;
             ./autogen.sh;
             ./configure --prefix=/usr/local;
             make;
