@@ -303,7 +303,7 @@ do
     cd applications/${apps_stable};
         git pull;
         cd ../../;
-    slee 1;
+    sleep 1;
     clear;
 done;
 
